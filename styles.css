@@ -1,9 +1,10 @@
 .board {
   margin: 50px auto 0px auto;
-  width: calc(50px * 8 + 5px * 13);
-  height: calc(50px * 8 + 5px * 13);
+  width: calc(50px * 8 + 4px * 18);
+  height: calc(50px * 8 + 4px * 18);
   background-color: #2A2A2A;
   border-radius: 4px;
+  padding: 4px 0px 0px 4px;
 }
 
 .square {
@@ -15,12 +16,12 @@
 }
 
 .piece {
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
+  width: 42px;
+  height: 42px;
+  border-radius: 100px;
   background-color: #415161;
-  left: 5px;
-  top: 5px;
+  left: 4px;
+  top: 4px;
   position: relative;
 }
 

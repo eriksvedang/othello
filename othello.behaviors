@@ -1,2 +1,3 @@
-{:+ {:app [(:lt.objs.plugins/load-js "othello_compiled.js" true)]
+{:+ {:app [(:lt.objs.plugins/load-js "othello_compiled.js" true)
+           ((:lt.objs.plugins/load-css "styles.css"))]
      :othello.hello [:lt.plugins.othello/on-close-destroy]}}

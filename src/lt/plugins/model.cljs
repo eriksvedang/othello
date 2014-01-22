@@ -1,11 +1,10 @@
 (ns lt.plugins.othello.model)
 
+(def starting-moves {[3 3] :w [3 4] :b [4 3] :b [4 4] :w})
+
 (defn make-model []
   {:current-player :b
-   :moves {[3 3] :w
-           [3 4] :b
-           [4 3] :b
-           [4 4] :w}})
+   :moves starting-moves})
 
 (defn get-board [model]
   (:moves model))
