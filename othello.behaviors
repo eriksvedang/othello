@@ -1,0 +1,2 @@
+{:+ {:app [(:lt.objs.plugins/load-js "othello_compiled.js" true)]
+     :othello.hello [:lt.plugins.othello/on-close-destroy]}}

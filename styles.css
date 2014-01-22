@@ -1,0 +1,37 @@
+.board {
+  margin: 50px auto 0px auto;
+  width: calc(50px * 8 + 5px * 13);
+  height: calc(50px * 8 + 5px * 13);
+  background-color: #2A2A2A;
+  border-radius: 4px;
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  background-color: #456;
+  margin: 4px;
+  display: inline-block;
+}
+
+.piece {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: #415161;
+  left: 5px;
+  top: 5px;
+  position: relative;
+}
+
+.selected {
+  background-color: #444;
+}
+
+.white {
+  background-color: #FFF;
+}
+
+.black {
+  background-color: #000;
+}

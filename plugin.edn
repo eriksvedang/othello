@@ -1,0 +1,5 @@
+{:name "othello"
+ :author ""
+ :source ""
+ :desc ""
+ :behaviors "othello.behaviors"}
