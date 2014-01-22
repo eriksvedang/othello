@@ -10,7 +10,7 @@
 ;; The model
 
 (def m (atom (model/make-model)))
-
+@m
 
 
 ;; Graphics
@@ -30,7 +30,7 @@
   :click #(object/raise this :make-move x y))
 
 (defui game-panel [this]
-  [:div panel [:div.board (for [y (range 8)]
+  [:div.panel [:div.board (for [y (range 8)]
                             [:div
                              (for [x (range 8)]
                                (square this x y))])]])
@@ -64,7 +64,7 @@
 (behavior ::on-make-move
           :triggers #{:make-move}
           :reaction (fn [this x y]
-                      (swap! m model/move [x y])
+                      (swap! m model/try-move [x y])
                       (refresh-graphics)
                       (console/log (str "move at [" x " " y "]"))))
 
