@@ -37,7 +37,8 @@
 
 (defn move-type->class [piece]
   ({:w :white
-    :b :black} piece :none))
+    :b :black
+    :option :option} piece :none))
 
 (defn set-piece [coord move-type]
   (let [square (get-square coord)
@@ -47,7 +48,8 @@
 
 (defn reset-piece [piece]
   (dom/remove-class piece :white)
-  (dom/remove-class piece :black))
+  (dom/remove-class piece :black)
+  (dom/remove-class piece :option))
 
 (defn reset-pieces []
   (doall (map reset-piece (dom/$$ ".piece" js/document))))
@@ -55,7 +57,10 @@
 (defn refresh-graphics []
   (reset-pieces)
   (doall (for [[pos color] (model/get-board @m)]
-           (set-piece pos color))))
+           (set-piece pos color)))
+  (doall (for [pos (model/get-possible-moves @m)]
+           (set-piece pos :option)))
+  )
 
 
 

@@ -19,10 +19,10 @@
   width: 42px;
   height: 42px;
   border-radius: 100px;
-  background-color: #415161;
   left: 4px;
   top: 4px;
   position: relative;
+  background-color: #456;
 }
 
 .selected {
@@ -35,4 +35,8 @@
 
 .black {
   background-color: #000;
+}
+
+.option {
+  background-color: #345;
 }

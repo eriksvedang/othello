@@ -1,6 +1,9 @@
 (ns lt.plugins.othello.model)
 
-(def starting-moves {[3 3] :w [3 4] :b [4 3] :b [4 4] :w})
+(def starting-moves {[3 3] :w
+                     [3 4] :b
+                     [4 3] :b
+                     [4 4] :w})
 
 (defn get-board [model]
   (:moves model))
@@ -100,7 +103,9 @@
         :b nil}})
 
 (defn simple-ai [model]
-  (rand-nth (get-possible-moves model)))
+  (let [moves (get-possible-moves model)]
+    (if (seq moves)
+      (rand-nth moves))))
 
 (defn make-model []
   (make-model-with-ai simple-ai))
@@ -109,7 +114,9 @@
   (let [player (:current-player model)
         ai (get-in model [:ai player])]
     (if ai
-      (place-move model (ai model))
+      (if-let [move (ai model)]
+        (place-move model move)
+        model)
       model)))
 
 (-> (make-model)
