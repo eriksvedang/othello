@@ -1,4 +1,5 @@
 {:name "Othello"
+ :version "0.0.1"
  :author "Erik Svedäng"
  :source "https://github.com/eriksvedang/othello"
  :desc "Play Othello versus a simple AI inside Light Table"
