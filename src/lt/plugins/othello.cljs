@@ -78,7 +78,7 @@
 
 (object/object* ::othello.game
                 :tags [:othello.game]
-                :behaviors [::on-make-move ::on-close-destroy]
+                :behaviors [::on-make-move]
                 :name "othello"
                 :init (fn [this]
                         (game-panel this)))
