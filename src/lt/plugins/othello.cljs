@@ -65,6 +65,7 @@
           :triggers #{:make-move}
           :reaction (fn [this x y]
                       (swap! m model/try-move [x y])
+                      (swap! m model/ai-turn)
                       (refresh-graphics)
                       (console/log (str "move at [" x " " y "]"))))
 

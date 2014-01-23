@@ -2,10 +2,6 @@
 
 (def starting-moves {[3 3] :w [3 4] :b [4 3] :b [4 4] :w})
 
-(defn make-model []
-  {:current-player :b
-   :moves starting-moves})
-
 (defn get-board [model]
   (:moves model))
 
@@ -63,8 +59,26 @@
 ; (flips (make-model) [2 3] :b)
 ; (reduce flip (make-model) [])
 
-(defn can-make-move-at? [model pos]
+(defn pos-empty? [model pos]
   (not (get-in model [:moves pos])))
+
+(defn will-flip-something? [model pos player]
+  (not (empty? (get-flipped-ones model pos player))))
+
+(defn can-make-move-at? [model pos]
+  (and (pos-empty? model pos)
+       (will-flip-something? model pos (:current-player model))))
+
+; (can-make-move-at? (make-model) [1 3])
+; (can-make-move-at? (make-model) [2 3])
+
+(defn get-possible-moves [model]
+  (remove nil? (for [x (range 8)
+                     y (range 8)]
+                 (when (can-make-move-at? model [x y])
+                   [x y]))))
+
+; (get-possible-moves (make-model))
 
 (defn place-move [model pos]
   (let [current-player (:current-player model)]
@@ -79,6 +93,27 @@
       (place-move model pos)
       model)))
 
+(defn make-model-with-ai [ai]
+  {:current-player :b
+   :moves starting-moves
+   :ai {:w ai
+        :b nil}})
+
+(defn simple-ai [model]
+  (rand-nth (get-possible-moves model)))
+
+(defn make-model []
+  (make-model-with-ai simple-ai))
+
+(defn ai-turn [model]
+  (let [player (:current-player model)
+        ai (get-in model [:ai player])]
+    (if ai
+      (place-move model (ai model))
+      model)))
+
 (-> (make-model)
     (try-move [2 3])
-    get-board)
+    ai-turn
+    get-board
+    )
