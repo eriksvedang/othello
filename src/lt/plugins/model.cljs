@@ -94,6 +94,7 @@
     (-> model
         (assoc-in [:moves pos] current-player)
         (flips pos current-player)
+        (assoc-in [:last-move] pos)
         pass-turn)))
 
 (defn try-move [model [x y]]
@@ -107,6 +108,7 @@
 (defn make-model-with-ai [black-ai white-ai]
   {:current-player :b
    :moves starting-moves
+   :last-move nil
    :ai {:w white-ai
         :b black-ai}})
 
@@ -137,10 +139,14 @@
   "")
   ;(if (empty? (get-possible-moves ))))
 
+(defn get-last-move [model]
+  (:last-move model))
+
 (-> (make-model)
-    (try-move [2 0])
+    (try-move [2 3])
     ;(score :w)
     ai-turn
+    get-last-move
 ;    humans-turn?
 ;    get-board
     )
