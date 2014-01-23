@@ -7,4 +7,4 @@ The AI is just random at the moment, I plan to implement some of the techniques 
 
 ![Alt screenshot](https://raw2.github.com/eriksvedang/othello/master/othello-screen.png)
 
-Made by [Erik Svedäng](http://www.eriksvedang.com) January 2014.
+Made by [Erik Svedäng](http://www.eriksvedang.com), January 2014.
