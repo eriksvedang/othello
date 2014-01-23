@@ -29,14 +29,19 @@
   background-color: #444;
 }
 
-.white {
+.w {
   background-color: #FFF;
 }
 
-.black {
+.b {
   background-color: #000;
 }
 
 .option {
   background-color: #345;
+}
+
+#msg {
+  margin-top: 10px;
+  text-align: center;
 }

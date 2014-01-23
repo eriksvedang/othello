@@ -5,6 +5,8 @@
                      [4 3] :b
                      [4 4] :w})
 
+(def black-wins {[0 0] :b [1 1] :w [1 0] :w})
+
 (defn get-board [model]
   (:moves model))
 
@@ -83,24 +85,30 @@
 
 ; (get-possible-moves (make-model))
 
+(defn pass-turn [model]
+  (let [current-player (:current-player model)]
+    (assoc model :current-player (other-player current-player))))
+
 (defn place-move [model pos]
   (let [current-player (:current-player model)]
     (-> model
         (assoc-in [:moves pos] current-player)
         (flips pos current-player)
-        (assoc :current-player (other-player current-player)))))
+        pass-turn)))
 
 (defn try-move [model [x y]]
-  (let [pos [x y]]
-    (if (can-make-move-at? model pos)
-      (place-move model pos)
-      model)))
+  (if (empty? (get-possible-moves model))
+    (pass-turn model)
+    (let [pos [x y]]
+      (if (can-make-move-at? model pos)
+        (place-move model pos)
+        model))))
 
-(defn make-model-with-ai [ai]
+(defn make-model-with-ai [black-ai white-ai]
   {:current-player :b
    :moves starting-moves
-   :ai {:w ai
-        :b nil}})
+   :ai {:w white-ai
+        :b black-ai}})
 
 (defn simple-ai [model]
   (let [moves (get-possible-moves model)]
@@ -108,7 +116,7 @@
       (rand-nth moves))))
 
 (defn make-model []
-  (make-model-with-ai simple-ai))
+  (make-model-with-ai nil simple-ai))
 
 (defn ai-turn [model]
   (let [player (:current-player model)
@@ -116,11 +124,24 @@
     (if ai
       (if-let [move (ai model)]
         (place-move model move)
-        model)
+        (pass-turn model))
       model)))
 
+(defn humans-turn? [model]
+  (nil? (get-in model [:ai (:current-player model)])))
+
+(defn score [model player]
+  (count (filter #(= % player) (vals (get-in model [:moves])))))
+
+(defn winner-text [model]
+  "")
+  ;(if (empty? (get-possible-moves ))))
+
 (-> (make-model)
-    (try-move [2 3])
+    (try-move [2 0])
+    ;(score :w)
     ai-turn
-    get-board
+;    humans-turn?
+;    get-board
     )
+
