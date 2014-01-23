@@ -71,7 +71,7 @@
     (reset-piece piece)
     (if (or nothing-there already-right-color)
       (dom/add-class piece color)
-      (dom/add-class piece (mod-color color)))))
+      (dom/add-class piece (color-with-anim color)))))
 
 ;(set-piece [2 2] :w)
 ;(dom/remove-class piece :option)
