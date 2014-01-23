@@ -115,7 +115,7 @@
 
 (behavior ::let-ai-move
           :triggers #{:ai-move}
-          :debounce 2000
+          :debounce 1500
           :reaction (fn [this]
                       (swap! m model/ai-turn)
                       (refresh-graphics)
