@@ -6,3 +6,5 @@ A simple Othello game to be played inside the [Light Table](http://www.lighttabl
 The AI is just random at the moment, I plan to implement some of the techniques in Peter Norvig's 'Paradigms of Artificial Intelligence Programming' when I have time.
 
 ![Alt screenshot](https://raw2.github.com/eriksvedang/othello/master/othello-screen.png)
+
+Made by [Erik Svedäng](http://www.eriksvedang.com) January 2014.
